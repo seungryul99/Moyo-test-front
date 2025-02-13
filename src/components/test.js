@@ -6,9 +6,9 @@ function LoginPage() {
     // const testUrl = 'http://localhost:8080/auth/test';
     // const reissueTokenUrl = 'http://localhost:8080/reissue/token';
 
-    const loginRequestUrl = 'https://cafehub.site/api/users/login/github';
-    const testUrl = 'https://cafehub.site/api/auth/test';
-    const reissueTokenUrl = 'https://cafehub.site/api/reissue/token';
+    const loginRequestUrl = 'https://api.cafehub.site/api/users/login/github';
+    const testUrl = 'https://api.cafehub.site/api/auth/test';
+    const reissueTokenUrl = 'https://api.cafehub.site/api/reissue/token';
 
     const [jwtRefreshToken, setJwtRefreshToken] = useState('');
 
