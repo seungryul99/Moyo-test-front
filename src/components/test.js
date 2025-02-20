@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 
 function LoginPage() {
     // local
-    // const loginRequestUrl = 'http://localhost:8080/api/users/login/github';
-    // const testUrl = 'http://localhost:8080/auth/test';
-    // const reissueTokenUrl = 'http://localhost:8080/reissue/token';
+    const loginRequestUrl = 'http://localhost:8080/api/users/login/github';
+    const testUrl = 'http://localhost:8080/api/auth/test';
+    const reissueTokenUrl = 'http://localhost:8080/api/reissue/token';
 
-    const loginRequestUrl = 'https://api.cafehub.site/api/users/login/github';
-    const testUrl = 'https://api.cafehub.site/api/auth/test';
-    const reissueTokenUrl = 'https://api.cafehub.site/api/reissue/token';
+    // dev
+    // const loginRequestUrl = 'https://api.cafehub.site/api/users/login/github';
+    // const testUrl = 'https://api.cafehub.site/api/auth/test';
+    // const reissueTokenUrl = 'https://api.cafehub.site/api/reissue/token';
 
     const [jwtRefreshToken, setJwtRefreshToken] = useState('');
 
@@ -20,10 +21,10 @@ function LoginPage() {
         try {
             const accessToken = localStorage.getItem('accessToken');
 
-            if (!accessToken) {
-                console.error('액세스 토큰이 존재하지 않습니다.');
-                return;
-            }
+            // if (!accessToken) {
+            //     console.error('액세스 토큰이 존재하지 않습니다.');
+            //     return;
+            // }
 
             const response = await fetch(testUrl, {
                 method: 'GET',
