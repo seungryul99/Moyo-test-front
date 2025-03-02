@@ -6,8 +6,7 @@ function LoginPage() {
     // const testUrl = 'http://localhost:8080/auth/only/test';
     // const reissueTokenUrl = 'http://localhost:8080/auth/reissue/token';
     // const permitAllTestUrl = 'http://localhost:8080/permit/all/test';
-
-
+    
     // dev
     const loginRequestUrl = 'https://api.cafehub.site/auth/login/github';
     const testUrl = 'https://api.cafehub.site/auth/only/test';
