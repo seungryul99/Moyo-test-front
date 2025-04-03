@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 
 function LoginPage() {
-    // local
-    // const loginRequestUrl = 'http://localhost:8080/auth/login/github';
-    // const testUrl = 'http://localhost:8080/auth/only/test';
-    // const reissueTokenUrl = 'http://localhost:8080/auth/reissue/token';
-    // const permitAllTestUrl = 'http://localhost:8080/permit/all/test';
-    
-    // dev
-    const loginRequestUrl = 'https://api.cafehub.site/auth/login/github';
-    const testUrl = 'https://api.cafehub.site/auth/only/test';
-    const reissueTokenUrl = 'https://api.cafehub.site/auth/reissue/token';
-    const permitAllTestUrl = 'https://api.cafehub.site/permit/all/test';
+
+
+    const loginRequestUrl = 'http://localhost:8080/auth/login/github';
+    const testUrl = 'http://localhost:8080/auth/only/test';
+    const reissueTokenUrl = 'http://localhost:8080/auth/reissue/token';
+    const permitAllTestUrl = 'http://localhost:8080/permit/all/test';
 
 
     const [jwtRefreshToken, setJwtRefreshToken] = useState('');
@@ -97,6 +92,9 @@ function LoginPage() {
             console.error('요청 중 에러 발생:', error);
         }
     };
+
+
+
 
 
     return (
