@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 function LoginPage() {
 
     // local
-    // const loginRequestUrl = 'http://localhost:8080/auth/login/github';
-    // const testUrl = 'http://localhost:8080/auth/only/test';
-    // const reissueTokenUrl = 'http://localhost:8080/auth/reissue/token';
-    // const permitAllTestUrl = 'http://localhost:8080/permit/all/test';
+    const loginRequestUrl = 'http://localhost:8080/auth/login/github';
+    const testUrl = 'http://localhost:8080/auth/only/test';
+    const reissueTokenUrl = 'http://localhost:8080/auth/reissue/token';
+    const permitAllTestUrl = 'http://localhost:8080/permit/all/test';
 
     // test Server
-    const loginRequestUrl = 'https://api.cafehub.site/auth/login/github';
-    const testUrl = 'https://api.cafehub.site/auth/only/test';
-    const reissueTokenUrl = 'https://api.cafehub.site/auth/reissue/token';
-    const permitAllTestUrl = 'https://api.cafehub.site/permit/all/test';
+    // const loginRequestUrl = 'https://api.cafehub.site/auth/login/github';
+    // const testUrl = 'https://api.cafehub.site/auth/only/test';
+    // const reissueTokenUrl = 'https://api.cafehub.site/auth/reissue/token';
+    // const permitAllTestUrl = 'https://api.cafehub.site/permit/all/test';
 
 
     const [jwtRefreshToken, setJwtRefreshToken] = useState('');
@@ -53,38 +53,38 @@ function LoginPage() {
         try {
             const response = await fetch(reissueTokenUrl, {
                 method: 'POST',
-                credentials: 'include'
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
-    
+
             if (response.ok) {
-                // 헤더에서 액세스 토큰을 가져옵니다.
-                const accessToken = response.headers.get('Authorization'); // 헤더에서 Authorization 값을 가져옵니다.
-                console.log(accessToken)
+                const json = await response.json();
+                const accessToken = json.data?.accessToken;
 
                 if (accessToken) {
-                    // 'Bearer ' 제거하고 토큰만 저장
-                    const token = accessToken.replace('Bearer ', '');
-                    // 액세스 토큰을 로컬 스토리지에 저장
-                    localStorage.setItem('accessToken', token);
+                    localStorage.setItem('accessToken', accessToken);
                     console.log('토큰 재발급 성공');
+                } else {
+                    console.error('accessToken이 응답에 없습니다.');
                 }
             } else {
-                console.error('토큰 재발급 실패');
+                console.error('토큰 재발급 실패:', response.status);
             }
         } catch (error) {
             console.error('요청 중 에러 발생:', error);
         }
     };
 
+
     const handlePermitAllTestRequest = async () => {
         try {
-            const accessToken = localStorage.getItem('accessToken');
 
             const response = await fetch(permitAllTestUrl, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
                 }
             });
 
